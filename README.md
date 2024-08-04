@@ -23,9 +23,10 @@ In this template, packages and tools with the highest speed and performance are 
 ## How To Use
 
 ```bash
-$ git clone https://github.com/bkhalifeh/nestjs-microservice-template.git my-project && \
+git clone https://github.com/bkhalifeh/nestjs-microservice-template.git my-project && \
 cd my-project/backend && \
 pnpm i && \
+mv .env.example .env && \
 cd .. && \
-docker-compose -f docker-compose.dev.yaml up -d
+docker-compose -f docker-compose.dev.yaml up -d 
 ```
