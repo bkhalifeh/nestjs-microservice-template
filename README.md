@@ -12,13 +12,13 @@ This is a template for NestJS projects that uses microservice architecture.
 
 In this template, packages and tools with the highest speed and performance are used:
 
-- **[Fastify](https://docs.nestjs.com)** is used for setting up the server.
-- **Typia** is used for data validation.
-- **Drizzle** is used for database interaction and operations.
-- **PostgreSQL** is used as the database.
-- **Protobuf** is used for event transmission between services.
-- **NATS** is used as the event bus.
-- **Redis** is used as a cache manager and queue system.
+- **[Fastify](https://fastify.dev)** is used for setting up the server.
+- **[Typia](https://typia.io)** is used for data validation.
+- **[Drizzle](https://orm.drizzle.team)** is used for database interaction and operations.
+- **[PostgreSQL](https://www.postgresql.org)** is used as the database.
+- **[Protobuf](https://protobuf.dev)** is used for event transmission between services.
+- **[NATS](https://nats.io)** is used as the event bus.
+- **[Redis](https://redis.io)** is used as a cache manager and queue system.
 
 ## How To Use
 
