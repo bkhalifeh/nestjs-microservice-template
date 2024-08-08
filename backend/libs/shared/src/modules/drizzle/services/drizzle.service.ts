@@ -7,7 +7,9 @@ import {
 import { ConfigService } from '@nestjs/config';
 
 import { drizzle, PostgresJsDatabase } from 'drizzle-orm/postgres-js';
+import { InjectPinoLogger, PinoLogger } from 'nestjs-pino';
 import postgres from 'postgres';
+import { DrizzleLogger } from '../provider/drizzle-logger.provider';
 
 @Injectable()
 export class DrizzleService<T extends Record<string, unknown>>
@@ -31,9 +33,13 @@ export class DrizzleService<T extends Record<string, unknown>>
       ),
       {
         max: 1,
+        debug: true,
+        onclose: (connId: number) => {},
       },
     );
-    this.db = drizzle(this.client, { schema: this.schema });
+    this.db = drizzle(this.client, {
+      schema: this.schema,
+    });
   }
 
   onModuleDestroy() {

@@ -1,5 +1,5 @@
-import { ProtoDeserializer, ProtoSerializer } from '@app/shared/proto';
 import { CLIENT_NATS } from '@app/shared/common';
+import { ProtoDeserializer, ProtoSerializer } from '@app/shared/proto';
 import { Module } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { ClientsModule, NatsOptions, Transport } from '@nestjs/microservices';

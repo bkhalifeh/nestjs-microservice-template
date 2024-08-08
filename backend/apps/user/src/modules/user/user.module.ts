@@ -1,7 +1,9 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { BullModule } from '@nestjs/bullmq';
+import { LoggerModule } from 'nestjs-pino';
 import {
+  CommonModule,
   DrizzleModule,
   NatsModule,
   RedisModule,
@@ -13,12 +15,10 @@ import * as schema from '../../../db/schema';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({
-      isGlobal: true,
-    }),
+    CommonModule,
+    NatsModule,
     RedisModule.forRoot('user'),
     DrizzleModule.forRoot('user', schema),
-    NatsModule,
     BullModule.forRootAsync({
       inject: [RedisService],
       useFactory: (redisService: RedisService) => {
