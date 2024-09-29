@@ -23,11 +23,6 @@ services:
     volumes:
       - user-db-vol:/data/postgres
 
-  user-cache:
-    image: redis:7.2.5-alpine3.20
-    volumes:
-      - user-cache-vol:/data
-
   pgadmin:
     image: dpage/pgadmin4:8.4
     environment:
