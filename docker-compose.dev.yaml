@@ -9,21 +9,39 @@ services:
     env_file:
       - ./backend/.env
     depends_on:
-      - user-db
+      - db-srv
       - nats
     command: ["pnpm", "run", "dev", "user"]
 
-  user-db:
-    image: mongo:7.0.11-jammy
-    environment:
-      MONGO_INITDB_DATABASE: user_db
-    restart: always
-
+  todo-list-srv:
+    build:
+      target: development
+      context: ./backend
+      dockerfile: ./apps/todo-list/Dockerfile
     volumes:
-      - user-db-vol:/data/db
+      - ./backend:/app
+    env_file:
+      - ./backend/.env
+    depends_on:
+      - db-srv
+      - nats
+    command: ["pnpm", "run", "dev", "todo-list"]
+
+  db-srv:
+    image: mongo:7.0.11-jammy
+    volumes:
+      - db-srv-vol:/data/db
 
   nats:
     image: nats:2.10.18-alpine3.20
+
+  mongo-express:
+    image: mongo-express:1.0.2-20-alpine3.19
+    ports:
+      - "8081:8081"
+    environment:
+      - ME_CONFIG_BASICAUTH_ENABLED=false
+      - ME_CONFIG_MONGODB_URL=mongodb://db-srv:27017
 
   nginx:
     container_name: nginx
@@ -37,4 +55,4 @@ services:
 
 volumes:
   pgadmin:
-  user-db-vol:
+  db-srv-vol:
