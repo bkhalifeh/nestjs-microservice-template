@@ -28,23 +28,17 @@ export class TodoListService {
 
   async update(todoListId: string, title: string) {
     const resu = await this.todoListModel.updateOne(
-      { id: todoListId },
+      { _id: todoListId },
       { title },
     );
     if (resu.modifiedCount > 0) {
-      this.client
-        .emit<
-          any,
-          pb.TodoListUpdated
-        >('TodoListUpdated', { id: todoListId, title })
-        .subscribe();
       return resu;
     }
     throw new NotAcceptableException('can not update todolist');
   }
 
-  async delete(todoListId: string) {
-    const resd = await this.todoListModel.deleteOne({ id: todoListId });
+  async delete(todoListId: string): Promise<any> {
+    const resd = await this.todoListModel.deleteOne({ _id: todoListId });
     if (resd.deletedCount > 0) {
       this.client
         .emit<any, pb.TodoListDeleted>('TodoListDeleted', { id: todoListId })
