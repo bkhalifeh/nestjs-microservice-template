@@ -7,16 +7,6 @@ message TodoListCreated {
   string title = 3;
 }
 
-message TodoListUpdated {
-  string id = 1;
-  string title = 3;
-}
-
 message TodoListDeleted {
-  string id = 1;
-}
-
-
-message TodoItemCreated {
   string id = 1;
 }
