@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
+import Joi from 'joi';
 import { LoggerModule } from 'nestjs-pino';
 
 @Module({
@@ -16,6 +17,12 @@ import { LoggerModule } from 'nestjs-pino';
     }),
     ConfigModule.forRoot({
       isGlobal: true,
+      validationSchema: Joi.object({
+        DATABASE_URL_USER: Joi.string().required().uri(),
+        NATS_SERVER: Joi.string().required().uri(),
+        ARGON_SECRET: Joi.string().required().base64(),
+        JWT_SERCRET: Joi.string().required().base64(),
+      }),
     }),
   ],
 })
