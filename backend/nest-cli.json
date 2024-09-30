@@ -24,6 +24,24 @@
       "compilerOptions": {
         "tsConfigPath": "libs/shared/tsconfig.lib.json"
       }
+    },
+    "todo-list": {
+      "type": "application",
+      "root": "apps/todo-list",
+      "entryFile": "main",
+      "sourceRoot": "apps/todo-list/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/todo-list/tsconfig.app.json"
+      }
+    },
+    "todo-item": {
+      "type": "application",
+      "root": "apps/todo-item",
+      "entryFile": "main",
+      "sourceRoot": "apps/todo-item/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/todo-item/tsconfig.app.json"
+      }
     }
   }
 }
