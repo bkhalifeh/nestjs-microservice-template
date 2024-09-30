@@ -1,8 +1,9 @@
-import { NestFactory } from '@nestjs/core';
-import { TodoItemModule } from './todo-item.module';
+import { appInit, createOnListen } from '@app/shared';
+import { AppModule } from './modules/app/app.module';
 
 async function bootstrap() {
-  const app = await NestFactory.create(TodoItemModule);
-  await app.listen(3000);
+  const { app, logger } = await appInit(AppModule);
+  await app.startAllMicroservices();
+  await app.listen(3000, '0.0.0.0', createOnListen(logger));
 }
 bootstrap();
