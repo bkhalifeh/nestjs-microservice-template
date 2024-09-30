@@ -15,9 +15,11 @@ export class IsUserAuth implements CanActivate {
   constructor(
     private readonly jwtService: JwtService,
     configService: ConfigService,
-    utilService: UtilService,
   ) {
-    this.secret = utilService.b64decode(configService.get('JWT_SECRET', ''));
+    this.secret = Buffer.from(
+      configService.get('JWT_SECRET', '') as string,
+      'base64',
+    );
   }
 
   canActivate(context: ExecutionContext): boolean {
@@ -29,6 +31,7 @@ export class IsUserAuth implements CanActivate {
     try {
       const payload = this.jwtService.verify(token, {
         secret: this.secret,
+        ignoreExpiration: false,
       });
       request['user'] = payload;
     } catch {
