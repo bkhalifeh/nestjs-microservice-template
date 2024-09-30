@@ -3,6 +3,8 @@ import * as pb from './pb';
 
 export const actionId2Proto = new Map<number, IMessageType<any>>([
   [1, pb.UserCreated],
+  [2, pb.TodoListCreated],
+  [3, pb.TodoListDeleted],
 ]);
 
 export const proto2ActionId = new Map<string, number>();
