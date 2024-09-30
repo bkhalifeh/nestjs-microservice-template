@@ -1,8 +1,8 @@
 import { NestFactory } from '@nestjs/core';
-import { TodoListModule } from './todo-list.module';
+import { AppModule } from './modules/app/app.module';
 
 async function bootstrap() {
-  const app = await NestFactory.create(TodoListModule);
+  const app = await NestFactory.create(AppModule);
   await app.listen(3000);
 }
 bootstrap();

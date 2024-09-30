@@ -1,5 +1,5 @@
 import { Controller, Get } from '@nestjs/common';
-import { TodoListService } from './todo-list.service';
+import { TodoListService } from '../services/todo-list.service';
 
 @Controller()
 export class TodoListController {

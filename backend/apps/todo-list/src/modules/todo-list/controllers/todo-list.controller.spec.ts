@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { TodoListController } from './todo-list.controller';
-import { TodoListService } from './todo-list.service';
+import { TodoListService } from '../services/todo-list.service';
 
 describe('TodoListController', () => {
   let todoListController: TodoListController;
