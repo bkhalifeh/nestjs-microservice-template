@@ -1,10 +1,4 @@
-import {
-  InjectModel,
-  ModelDefinition,
-  Prop,
-  Schema,
-  SchemaFactory,
-} from '@nestjs/mongoose';
+import { ModelDefinition, Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument, Model, SchemaTypes } from 'mongoose';
 
 @Schema()
