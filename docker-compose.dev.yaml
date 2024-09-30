@@ -27,6 +27,20 @@ services:
       - nats
     command: ["pnpm", "run", "dev", "todo-list"]
 
+  todo-item-srv:
+    build:
+      target: development
+      context: ./backend
+      dockerfile: ./apps/todo-item/Dockerfile
+    volumes:
+      - ./backend:/app
+    env_file:
+      - ./backend/.env
+    depends_on:
+      - db-srv
+      - nats
+    command: ["pnpm", "run", "dev", "todo-item"]
+
   db-srv:
     image: mongo:7.0.11-jammy
     volumes:
@@ -42,9 +56,10 @@ services:
     environment:
       - ME_CONFIG_BASICAUTH_ENABLED=false
       - ME_CONFIG_MONGODB_URL=mongodb://db-srv:27017
+    depends_on:
+      - db-srv
 
   nginx:
-    container_name: nginx
     image: nginx:stable-alpine3.17
     ports:
       - "3000:80"
@@ -52,7 +67,8 @@ services:
       - ./nginx/nginx.dev.conf:/etc/nginx/conf.d/default.conf
     depends_on:
       - user-srv
+      - todo-list-srv
+      - todo-item-srv
 
 volumes:
-  pgadmin:
   db-srv-vol:
