@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { UserService } from '../../user/services/user.service';
 import { AuthSignUpDto } from '../dtos/auth-sign-up.dto';
 import { AuthSignInDto } from '../dtos/auth-sign-in.dto';
@@ -25,6 +29,6 @@ export class AuthService {
     if (user && (await this.hashService.verify(user.password, password))) {
       return { token: this.jwtService.sign({ id: user.id }) };
     }
-    throw new NotFoundException('user not found');
+    throw new UnauthorizedException('username or password is wrong');
   }
 }
